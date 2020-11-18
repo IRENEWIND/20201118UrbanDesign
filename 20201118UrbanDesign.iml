@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Hemesh" level="project" />
     <orderEntry type="library" name="Processing" level="project" />
+    <orderEntry type="library" name="Kabeja" level="project" />
   </component>
 </module>
