@@ -5,7 +5,9 @@ import wblut.geom.WB_Point;
 import wblut.geom.WB_PolyLine;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 import java.util.ArrayList;
+
 
 
 public class Main extends PApplet {
@@ -13,13 +15,14 @@ public class Main extends PApplet {
         PApplet.main("test.Main");
     }
 
-    ArrayList<WB_PolyLine> polys = DXFImport.getDXFPolyLine("F:a.dxf","river");
+//    ArrayList<WB_PolyLine> myPlan = new ArrayList<WB_PolyLine>();
 
     public void settings() {
         size(400, 400);
     }
 
     public void setup() {
+//        myPlan =  DXFImport.getDXFPolyLine("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/0plan.dxf", "RIVER");
 
     }
 

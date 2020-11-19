@@ -35,6 +35,7 @@ public class DXFImport extends PApplet {
         return DXFLWPolyline(doc.getDXFLayer(layerName));
     }
 
+
     public static double[][][] DXFLWPolyline(DXFLayer layer) {
         List<DXFLWPolyline> pls = layer.getDXFEntities(DXFConstants.ENTITY_TYPE_LWPOLYLINE);
         double[][][] polyLines = new double[pls.size()][][];
