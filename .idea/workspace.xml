@@ -42,36 +42,24 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/xml-apis.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../add_java/0my/guo_Cam.jar" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\computer\idealC\idealc_workplace\20201118UrbanDesign\src\DrawPolygons" />
       <recent name="D:\computer\idealC\idealc_workplace\20201118UrbanDesign\src\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="Application.Main (2)">
     <configuration name="Box" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MASTest.Box" />
       <module name="20201118UrbanDesign" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="MASTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DXFxx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test.DXFxx" />
-      <module name="20201118UrbanDesign" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -92,12 +80,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test.Main" />
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Box.Main" />
       <module name="20201118UrbanDesign" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test.*" />
+          <option name="PATTERN" value="Box.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -118,13 +106,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="DrawPolygonsByZ.Test" />
+      <module name="20201118UrbanDesign" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DrawPolygonsByZ.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (2)" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Box" />
         <item itemvalue="Application.Main_he" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.DXFxx" />
       </list>
     </recent_temporary>
   </component>
@@ -155,30 +156,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1148" y="328" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1605690096695" />
-    <state x="1193" y="282" key="FileChooserDialogImpl" timestamp="1605695483525">
+    <state x="1193" y="282" key="FileChooserDialogImpl" timestamp="1605792773196">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1193" y="282" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605695483525" />
-    <state width="1877" height="213" key="GridCell.Tab.0.bottom" timestamp="1605779021929">
+    <state x="1193" y="282" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605792773196" />
+    <state width="1877" height="213" key="GridCell.Tab.0.bottom" timestamp="1605795008894">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605779021929" />
-    <state width="1877" height="213" key="GridCell.Tab.0.center" timestamp="1605779021929">
+    <state width="1877" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605795008894" />
+    <state width="1877" height="213" key="GridCell.Tab.0.center" timestamp="1605795008894">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605779021929" />
-    <state width="1877" height="213" key="GridCell.Tab.0.left" timestamp="1605779021929">
+    <state width="1877" height="213" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605795008894" />
+    <state width="1877" height="213" key="GridCell.Tab.0.left" timestamp="1605795008894">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605779021929" />
-    <state width="1877" height="213" key="GridCell.Tab.0.right" timestamp="1605779021929">
+    <state width="1877" height="213" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605795008894" />
+    <state width="1877" height="213" key="GridCell.Tab.0.right" timestamp="1605795008894">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605779021929" />
-    <state x="880" y="102" key="SettingsEditor" timestamp="1605695504640">
+    <state width="1877" height="213" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605795008894" />
+    <state x="811" y="96" key="SettingsEditor" timestamp="1605792778091">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="880" y="102" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605695504640" />
+    <state x="811" y="96" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1605792778091" />
     <state x="335" y="451" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605776262048">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
