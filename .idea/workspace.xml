@@ -53,7 +53,7 @@
       <recent name="D:\computer\idealC\idealc_workplace\20201118UrbanDesign\src\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (2)">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Box" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MASTest.Box" />
       <module name="20201118UrbanDesign" />
@@ -93,12 +93,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main_he" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test2he.Main_he" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Grid.Main" />
       <module name="20201118UrbanDesign" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="test2he.*" />
+          <option name="PATTERN" value="Grid.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,11 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main (2)" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Box" />
-        <item itemvalue="Application.Main_he" />
       </list>
     </recent_temporary>
   </component>
@@ -150,32 +150,37 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1148" y="328" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605690096695">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1148" y="328" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1605690096695" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1605841789865">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1605841789865" />
     <state x="1193" y="282" key="FileChooserDialogImpl" timestamp="1605792773196">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1193" y="282" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605792773196" />
-    <state width="1877" height="213" key="GridCell.Tab.0.bottom" timestamp="1605795008894">
+    <state width="923" height="213" key="GridCell.Tab.0.bottom" timestamp="1605874158377">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605795008894" />
-    <state width="1877" height="213" key="GridCell.Tab.0.center" timestamp="1605795008894">
+    <state width="923" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605874158377" />
+    <state width="923" height="213" key="GridCell.Tab.0.center" timestamp="1605874158377">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605795008894" />
-    <state width="1877" height="213" key="GridCell.Tab.0.left" timestamp="1605795008894">
+    <state width="923" height="213" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605874158377" />
+    <state width="923" height="213" key="GridCell.Tab.0.left" timestamp="1605874158377">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605795008894" />
-    <state width="1877" height="213" key="GridCell.Tab.0.right" timestamp="1605795008894">
+    <state width="923" height="213" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605874158377" />
+    <state width="923" height="213" key="GridCell.Tab.0.right" timestamp="1605874158377">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="213" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605795008894" />
+    <state width="923" height="213" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605874158377" />
     <state x="811" y="96" key="SettingsEditor" timestamp="1605792778091">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -188,6 +193,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="499" y="256" width="921" height="641" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1605776306476" />
+    <state x="662" y="74" width="596" height="891" key="find.popup" timestamp="1605868556860">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="662" y="74" width="596" height="891" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1605868556860" />
     <state x="226" y="284" key="refactoring.ChangeSignatureDialog" timestamp="1605775822139">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
