@@ -41,18 +41,18 @@ public class Main extends PApplet {
     //鼠标敲击事件
     public void mousePressed(){
         //改变点的属性
-        testGrids.changeGridProperty(mouseX, mouseY,20);
+        testGrids.setLSquare(mouseX, mouseY);
     }
 
     //绘制网格
     void draw_grids() {
-        ArrayList<Grid> grids_draw = testGrids.getArray();
+        ArrayList<Grid> grids_draw = testGrids.grids;
         for(Grid t_grid : grids_draw){
             strokeWeight(1);
             stroke(0);
 //            noStroke();
             fill(200);
-            if (t_grid.property == 0) fill(200);
+            if (t_grid.property == 100) fill(200);
             else if (t_grid.property == 1) fill(0, 180, 180);
             else if (t_grid.property == 2) fill(0, 180, 220);
             else if (t_grid.property == 3) fill(120);
