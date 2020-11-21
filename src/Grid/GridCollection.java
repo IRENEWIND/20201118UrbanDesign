@@ -1,7 +1,11 @@
 package Grid;
 
+import javafx.beans.property.Property;
+
 import java.util.ArrayList;
 import java.util.Collection;
+
+import static Grid.Main.*;
 
 public class GridCollection {
     ArrayList<Grid> grids;
@@ -16,12 +20,24 @@ public class GridCollection {
     }
 
 
-    public GridCollection geneLSquare(){
+    //定义大广场的位置
+    public GridCollection setLSquare(int mx, int my){
         GridCollection new_grids;
         ArrayList<Grid> t_grids = new ArrayList<Grid>();
 
         new_grids = new GridCollection(t_grids);
         return new_grids;
+    }
+
+    //根据坐标找到Grid
+
+    //对grid更改属性property
+    public void changeGridProperty(int mX, int mY, int new_property){
+        int i = (int)mX/l_grid;
+        int j = (int)mY/l_grid;
+        int x = grids.get((j * Nx + i)).x;
+        int y = grids.get((j * Nx + i)).y;
+        grids.set((j * Nx + i), new Grid(x, y, l_grid, new_property));
     }
 
     //初始化网格
@@ -75,7 +91,7 @@ public class GridCollection {
         return t;
     }
 
-
+//设置初始道路
     public GridCollection setRoad() {
         GridCollection t;
         ArrayList<Grid> new_grids = new ArrayList<Grid>();
