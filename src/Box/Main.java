@@ -1,6 +1,6 @@
 package Box;
 
-import gzf.gui.CameraController;
+
 import processing.core.PApplet;
 import wblut.geom.WB_PolyLine;
 import wblut.geom.WB_Polygon;
@@ -16,7 +16,6 @@ public class Main extends PApplet {
 
     Box box;
     WB_Render render;
-    CameraController cam;
 
     public static void main(String[] args) {
         PApplet.main("Box.Main");

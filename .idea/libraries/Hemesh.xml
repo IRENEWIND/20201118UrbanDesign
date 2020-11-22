@@ -1,21 +1,21 @@
 <component name="libraryTable">
   <library name="Hemesh">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/arpack-combo.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/csparsej.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/eclipse-collections-9.0.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/eclipse-collections-api-9.0.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/exp4j-0.4.7.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/hemesh-data-3_0_0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/hemesh-external-4_0_0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/hemesh.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/jplasma.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/jtransforms.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/jts-1.14.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/junit.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/netlib-java.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/optimization.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/JAR/HEMESH/hemesh/library/parallelcolt-0.9.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/arpack-combo.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/csparsej.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/eclipse-collections-9.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/eclipse-collections-api-9.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/exp4j-0.4.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/hemesh-data-3_0_0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/hemesh-external-4_0_0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/hemesh.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/jplasma.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/jtransforms.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/jts-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/junit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/netlib-java.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/optimization.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/HEMESH/hemesh/library/parallelcolt-0.9.4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

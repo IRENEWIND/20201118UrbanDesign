@@ -1,16 +1,16 @@
 <component name="libraryTable">
   <library name="Kabeja">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/batik-all.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/js.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/kabeja-0.4.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/kabeja-svg-0.4.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/kabeja-xslt.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/miethxml-toolkit.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/miethxml-ui.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/pdf-transcoder.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/xml-apis-ext.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/kebeja/kabeja/lib/xml-apis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/batik-all.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/js.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/kabeja-0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/kabeja-svg-0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/kabeja-xslt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/miethxml-toolkit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/miethxml-ui.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/pdf-transcoder.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/xml-apis-ext.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../1computer/add_java/0my/kabeja/lib/xml-apis.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
