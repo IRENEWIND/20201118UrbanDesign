@@ -29,11 +29,11 @@ public class Grid {
 
         this.r_factor = 0;
         this.ls_factor = 0;
-        this.r_ls_factor = (float) (0.8*r_factor + 0.2*ls_factor);
+        this.r_ls_factor = (float) (0.5*r_factor + 0.5*ls_factor);
     }
 
-    public void change_r_ls_factor(){
-        r_ls_factor = (float) (0.5*r_factor + 0.5*ls_factor);
+    public void update_r_ls_factor(){
+        r_ls_factor = (float) (0.3*r_factor + 0.7*ls_factor);
     }
 
 }

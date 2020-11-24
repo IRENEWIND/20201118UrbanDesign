@@ -1,7 +1,11 @@
 package Grid;
 
 import javafx.beans.property.Property;
+import org.apache.batik.dom.xbl.NodeXBL;
+import processing.core.PApplet;
+import processing.core.PImage;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -11,31 +15,48 @@ import static Grid.Main.*;
 //改变属性，内容用change
 //设置初始值，河流、道路用set，手动生成大广场set
 //自动生成用gen
+//计算用math
 
 public class GridCollection {
+
+//大广场参数
+    int r_factor = 10;  //大广场中心点影响的范围
+    int n_square = 15;  //大广场周边取的格子数
+
+
     ArrayList<Grid> grids;
 
     public GridCollection(ArrayList<Grid> grids) {
         this.grids = grids;
     }
 
-    //根据坐标定义大广场的位置,确定中心点,改变广场影响因子
+    //根据坐标定义大广场的位置,确定中心点,改变广场影响因子,并产生周边
     public void setLSquareCenter(int mx, int my) {
         //找寻i,j
         int i = mx / l_grid;
         int j = my / l_grid;
-        changeGridProperty(i, j, 20);
-//        changeLSquareFactor();
-//        genLSquareSurround();
+        Grid t = grids.get(j * Nx + i);
+        //在河流附近生成点，远的地方不行
+        if (t.r_factor > 0.7) {
+            if (t.property == 100) {
+                changeGridProperty(i, j, 20);
+                changeLSquareFactor(i, j);
+                changeR_LS_Factor();
+                genLSquareSurround(i, j, r_factor, n_square);
+            }
+        }
     }
 
-    //根据大广场中心,计算影响因子，产生大广场周边的广场21
-    public void genLSquareSurround(){
-        changeR_LS_Factor();
+    //根据中心点产生其他大广场坐标
+    public void genLSquareCenter() {
 
-        int n_square = 20;
-        Grid[] t_grids = new Grid[n_square];
-        t_grids = mathMaxFactors(n_square);//找出周边的20个最大的值
+    }
+
+
+    //根据大广场中心(i,j),在一定范围r_factor计算影响因子，产生大广场周边的广场21
+    public void genLSquareSurround(int i, int j, int r_factor, int n_square) {
+        Grid[] t_grids;
+        t_grids = mathMaxFactors(i, j, r_factor, n_square);//找出周边的n_square个最大的值
         for (int k = 0; k < n_square; k++) {
             int n = t_grids[k].n;
             changeGridProperty(n, 21);
@@ -64,33 +85,29 @@ public class GridCollection {
         }
     }
 
-    //改变格点的大广场影响因子
-    public void changeLSquareFactor() {
-        int factor_grid = 15; //影响周边20个格点
-            for (int k = 0; k < grids.size(); k++) {
-                Grid n = grids.get(k);
-                if (n.property == 20) {
-                    int i = n.i;
-                    int j = n.j;
-                    for (int p = i - factor_grid; p <= i + factor_grid; p++) {
-                        for (int q = j - factor_grid; q <= j + factor_grid; q++) {
-                            Grid m = grids.get(p*Nx+q);
-                            float dist_pq = sqrt((p - i) * (p - i) + (q - j) * (q - j)) * l_grid;
-                            float dist_max = sqrt(2)*factor_grid * l_grid;
-                            float t_factor = map(dist_pq * dist_pq, 0, dist_max * dist_max, 1, 0);
-                            m.ls_factor = max(m.ls_factor, t_factor);
-                            grids.set(q*Nx+p, m);
-                        }
-                    }
+    //根据广场中心点改变格点的大广场影响因子，根据格点(i,j)
+    public void changeLSquareFactor(int i, int j) {
+        int factor_grid = 10; //影响周边格点
+        for (int p = i - factor_grid; p <= i + factor_grid; p++) {
+            for (int q = j - factor_grid; q <= j + factor_grid; q++) {
+                if (p >= 0 && p < Nx && q >= 0 && q < Ny) {
+                    Grid m = grids.get(q * Nx + p);
+                    float dist_pq = sqrt((p - i) * (p - i) + (q - j) * (q - j)) * l_grid;
+                    float dist_max = sqrt(2) * factor_grid * l_grid;
+                    float t_factor = map(dist_pq * dist_pq, 0, dist_max * dist_max, 1, 0);
+                    m.ls_factor = max(m.ls_factor, t_factor);
+                    grids.set(q * Nx + p, m);
                 }
             }
         }
+    }
+
 
     //改变河流大广场合并影响因子
     public void changeR_LS_Factor() {
         for (int k = 0; k < grids.size(); k++) {
             Grid n = grids.get(k);
-            n.change_r_ls_factor();
+            n.update_r_ls_factor();
             grids.set(k, n);
         }
     }
@@ -126,14 +143,56 @@ public class GridCollection {
         return new_grids;
     }
 
+
+    //找出一定范围（广场影响范围）最大的r_ls_factor中n个元素，返回新数组
+    public Grid[] mathMaxFactors(int i, int j, int r_factor, int n) {
+        Grid[] t_grids = new Grid[n];
+        int k = 0;
+        for (int p = i - r_factor; p <= i + r_factor; p++) {
+            for (int q = j - r_factor; q <= j + r_factor; q++) {
+                if (p >= 0 && p < Nx && q >= 0 && q < Ny) {
+                    Grid m = grids.get(q * Nx + p);
+                    if (m.property == 100) {
+                        if (k < n) {  //在n个以内先放入集合中
+                            t_grids[k] = m;
+                            k++;
+                        } else if (m.r_ls_factor != 0) {
+                            float min_factor = m.r_ls_factor;
+                            int removeN = n;
+                            for (int h = 0; h < n; h++) {
+                                if (t_grids[h].r_ls_factor < min_factor) {
+                                    min_factor = t_grids[h].r_ls_factor;
+                                    removeN = h;
+                                }
+                            }
+                            if (removeN != n) {
+                                t_grids[removeN] = m;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return t_grids;
+    }
+
+
+//    public GridCollection setPic(PImage origin) {
+//        for (Grid t_grid : grids) {
+//            Color a = origin.get(t_grid.x, t_grid.y);
+//            Color
+//        }
+//
+//    }
+
     //设置初始河流
     public GridCollection setRiver() {
         GridCollection t;
         ArrayList<Grid> new_grids = new ArrayList<Grid>();
         for (Grid t_grid : grids) {
-            if (t_grid.x > 150 && t_grid.x < 210 && t_grid.y > 150) {
+            if (t_grid.x > 270 && t_grid.x < 340 && t_grid.y > 150) {
                 t_grid.property = 1;
-            } else if (t_grid.x < 210 && t_grid.y > 150 && t_grid.y < 200) {
+            } else if (t_grid.x < 340 && t_grid.y > 150 && t_grid.y < 220) {
                 t_grid.property = 1;
             }
             new_grids.add(t_grid);
@@ -149,11 +208,11 @@ public class GridCollection {
         ArrayList<Grid> new_grids = new ArrayList<Grid>();
         for (Grid t_grid : grids) {
             //绘制三个湖泊位置
-            if (t_grid.x > 250 && t_grid.x < 380 && t_grid.y > 260 && t_grid.y < 380) {
+            if (t_grid.x > 380 && t_grid.x < 500 && t_grid.y > 360 && t_grid.y < 480) {
                 t_grid.property = 2;
-            } else if (t_grid.x > 250 && t_grid.x < 380 && t_grid.y > 430 && t_grid.y < 500) {
+            } else if (t_grid.x > 380 && t_grid.x < 510 && t_grid.y > 560 && t_grid.y < 650) {
                 t_grid.property = 2;
-            } else if (t_grid.x > 280 && t_grid.x < 380 && t_grid.y > 560 && t_grid.y < 630) {
+            } else if (t_grid.x > 410 && t_grid.x < 480 && t_grid.y > 700 && t_grid.y < 830) {
                 t_grid.property = 2;
             }
             new_grids.add(t_grid);
@@ -169,9 +228,9 @@ public class GridCollection {
         ArrayList<Grid> new_grids = new ArrayList<Grid>();
         for (Grid t_grid : grids) {
             //绘制2条主干道
-            if (t_grid.y > 390 && t_grid.y < 420) {
+            if (t_grid.y > 510 && t_grid.y < 540) {
                 t_grid.property = 3;
-            } else if (t_grid.y > 510 && t_grid.y < 540) {
+            } else if (t_grid.y > 660 && t_grid.y < 690) {
                 t_grid.property = 3;
             }
             new_grids.add(t_grid);
@@ -182,30 +241,5 @@ public class GridCollection {
     }
 
 
-    //找出最大的r_ls_factor中n个元素，返回新数组
-    public Grid[] mathMaxFactors(int n){
-        Grid[] t_grids = new Grid[n];
-        for (int k = 0; k < grids.size(); k++) {
-            Grid m = grids.get(k);
-            if (m.property == 100) {
-                if (k < n) {  //在n个以内先放入集合中
-                    t_grids[k] = m;
-                } else if (m.r_ls_factor != 0) {
-                    float min_factor = m.r_ls_factor;
-                    int removeN = n;
-                    for (int h = 0; h < n; h++) {
-                        if (t_grids[h].r_ls_factor < min_factor) {
-                            min_factor = t_grids[h].r_ls_factor;
-                            removeN = h;
-                        }
-                        if (removeN != n) {
-                            t_grids[removeN] = m;
-                        }
-                    }
-                }
-            }
-        }
-        return t_grids;
-    }
 
 }

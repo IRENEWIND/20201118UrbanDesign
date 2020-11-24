@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Hemesh" level="project" />
+    <orderEntry type="library" exported="" name="Hemesh" level="project" />
     <orderEntry type="library" name="Processing" level="project" />
     <orderEntry type="library" name="Kabeja" level="project" />
     <orderEntry type="library" name="guo_Cam" level="project" />
