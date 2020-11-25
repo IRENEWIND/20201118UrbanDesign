@@ -53,20 +53,7 @@
       <recent name="D:\computer\idealC\idealc_workplace\20201118UrbanDesign\src\test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Box" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MASTest.Box" />
-      <module name="20201118UrbanDesign" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="MASTest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Main (3)">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MASTest.Main" />
       <module name="20201118UrbanDesign" />
@@ -86,6 +73,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Box.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testGrid.Main" />
+      <module name="20201118UrbanDesign" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testGrid.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,11 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (3)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Box" />
       </list>
     </recent_temporary>
   </component>
@@ -157,35 +157,51 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1148" y="328" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1605690096695" />
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1605841789865">
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser" timestamp="1606290743083">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1605841789865" />
+    <state x="765" y="236" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606290743083" />
     <state x="1193" y="282" key="FileChooserDialogImpl" timestamp="1606097435845">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="890" y="223" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606013271605" />
     <state x="1193" y="282" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606097435845" />
-    <state width="1877" height="194" key="GridCell.Tab.0.bottom" timestamp="1606188508432">
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1606305829424">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="178" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606062129047" />
-    <state width="1877" height="194" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606188508432" />
-    <state width="1877" height="194" key="GridCell.Tab.0.center" timestamp="1606188508432">
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606305829424" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1606305829424">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="178" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606062129045" />
-    <state width="1877" height="194" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606188508432" />
-    <state width="1877" height="194" key="GridCell.Tab.0.left" timestamp="1606188508431">
+    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606305829424" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1606305829424">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="178" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606062129044" />
-    <state width="1877" height="194" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606188508431" />
-    <state width="1877" height="194" key="GridCell.Tab.0.right" timestamp="1606188508432">
+    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606305829424" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1606305829424">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1493" height="178" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606062129047" />
-    <state width="1877" height="194" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606188508432" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606305829424" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1606305829425">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606305829425" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1606305829425">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606305829425" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1606305829424">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606305829424" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1606305829425">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606305829425" />
     <state x="811" y="96" key="SettingsEditor" timestamp="1606097441146">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -219,10 +235,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.RuntimeException" package="java.lang" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/testGrid/GridCollection.java</url>
+          <line>231</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

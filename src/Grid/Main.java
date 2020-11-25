@@ -43,18 +43,11 @@ public class Main extends PApplet {
 
 
         gridsSetInitial();
-//        testGrids = testGrids.setInitial(width, height, l_grid);//初始化网格
-//        testGrids = testGrids.setPic(origin);
-
-//        testGrids = testGrids.setRiver();  //设置初始河道
-//        testGrids = testGrids.setLake();   //设置初始湖泊
-//        testGrids = testGrids.setRoad();   //设置初始交通主干道
         testGrids.changeRiverFactor();  //改变河流影响因子
     }
 
     public void draw() {
         draw_grids();
-
     }
 
     //鼠标敲击事件
@@ -71,9 +64,9 @@ public class Main extends PApplet {
             noStroke();
             fill(200);
             //映射效果展示
-            if(t_grid.property == 100){
-                fill(255*t_grid.ls_factor, 0, 0);
-            }
+//            if(t_grid.property == 100){
+//                fill(255*t_grid.ls_factor, 0, 0);
+//            }
             if (t_grid.property == 100) fill(255);
             else if (t_grid.property == 1) fill(0, 180, 180);
             else if (t_grid.property == 2) fill(0, 180, 220);
@@ -103,6 +96,5 @@ public class Main extends PApplet {
         }
         testGrids = new GridCollection(t_grids);
     }
-
 
 }
