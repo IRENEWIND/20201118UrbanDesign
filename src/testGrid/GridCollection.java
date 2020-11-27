@@ -35,7 +35,7 @@ public class GridCollection {
 
     ArrayList<LSquareCenter> origin_l_square_centers = new ArrayList<LSquareCenter>();
     ArrayList<LSquareCenter> other_l_square_centers = new ArrayList<LSquareCenter>();
-    int l_square_num = 20;   //产生其他大广场的数量
+    int l_square_num = 50;   //产生其他大广场的数量
     int l_square_radius = 20;  //大广场影响半径，生成新大广场使用
 
 
@@ -108,6 +108,7 @@ public class GridCollection {
     }
 
     /**********其他大广场的智能体逐步生成***********/
+    //产生最初的球球
     public void genOLSC() {
         for (int k = 0; k < l_square_num; k++) {
             LSquareCenter t = new LSquareCenter((int) (W * Math.random()), (int) (H * Math.random()), l_square_radius);
@@ -115,37 +116,43 @@ public class GridCollection {
         }
     }
 
-    /*******************////
+
     //移动广场中心点，根据河流对应力场
-    public ArrayList<LSquareCenter> moveOLSC() {
-        ArrayList<LSquareCenter> new_lsc = new ArrayList<LSquareCenter>();
+    public void moveOLSC() {
+
         for (int k = 0; k < l_square_num; k++) {
             LSquareCenter t = other_l_square_centers.get(k);
             Grid rt = grids.get(Nx * t.j + t.i); //找到广场对应的力场点
+
             PVector r_factor = rt.river_flow_field;
-            r_factor = new PVector(0, 0);
 
             //检测t和其他圆的距离得到新力场
-            PVector ball_factor = new PVector(0,0);
+            PVector ball_factor = new PVector(0, 0);
             for (int h = 0; h < l_square_num; h++) {
                 if (h != k) {
                     LSquareCenter s = other_l_square_centers.get(h);
                     float d = dist(t.x, t.y, s.x, s.y);  //两个点之间的距离
-                    if (d < l_square_radius * l_grid) {
-                        ball_factor = new PVector(t.x-s.x, t.y-s.y);
-                        ball_factor.normalize(); ////************////////////为什么不能输出
-                        println(ball_factor);
+                    if (d < 0.9 * l_square_radius * l_grid) {
+                        ball_factor = new PVector(t.x - s.x, t.y - s.y);
+                        ball_factor.normalize();
                         break;
                     }
                 }
             }
-
-            PVector all = r_factor.add(ball_factor.mult(10));
+            PVector all = r_factor.add(ball_factor);
             t.update(all);
-            new_lsc.add(t);
+
+            //先检测小球是否在河流影响因子外部而且speed为0，如果是，删掉这个要素，增加一个新的
+            if ((t.speed.equals(new PVector(0, 0)) && rt.r_factor < 0.95 )) {
+                println("change");
+                other_l_square_centers.set(k, new LSquareCenter((int) (W * Math.random()), (int) (H * Math.random()), l_square_radius));
+            } else {
+                other_l_square_centers.set(k, t);
+            }
         }
-        return new_lsc;
     }
+
+
 
     //向外界传输生成广场的集合，方便绘图
     public ArrayList<LSquareCenter> getOLSC() {
@@ -162,7 +169,7 @@ public class GridCollection {
         int factor_grid = 80; //影响周边10个格点
         for (int k = 0; k < grids.size(); k++) {
             Grid m = grids.get(k);
-            if (m.property != 1) {
+
                 float dist_max = (float) factor_grid * l_grid;
                 float dist_mn = dist_max;
                 for (int h = 0; h < grids.size(); h++) {
@@ -177,9 +184,10 @@ public class GridCollection {
                 }
                 float t_factor = map(dist_mn * dist_mn, 0, dist_max * dist_max, 1, 0);
 //            float t_factor = (float)Math.log10(dist_mn) + 1;
-                m.r_factor = max(m.r_factor, t_factor);
+//                m.r_factor = max(m.r_factor, t_factor);
+                m.r_factor = t_factor;
                 grids.set(k, m);
-            }
+
         }
     }
 
@@ -190,12 +198,12 @@ public class GridCollection {
             for (int i = 0; i < Nx; i++) {
                 Grid m = grids.get(Nx * j + i);
                 Grid n = m; //目标点
-                float r_factor_max = 0;
+                float r_factor_max = m.r_factor;
                 for (int k = j - 1; k <= j + 1; k++) {
                     for (int l = i - 1; l <= i + 1; l++) {
                         if (l >= 0 && l < Nx && k >= 0 && k < Ny) {
                             Grid t = grids.get(Nx * k + l);
-                            if (t.r_factor > r_factor_max) {
+                            if (t.r_factor >= r_factor_max) {
                                 r_factor_max = t.r_factor;
                                 n = t;
                             }
@@ -276,9 +284,9 @@ public class GridCollection {
         GridCollection t;
         ArrayList<Grid> new_grids = new ArrayList<Grid>();
         for (Grid t_grid : grids) {
-            if (t_grid.x > 270 && t_grid.x < 340 && t_grid.y > 150) {
+            if (t_grid.x > 300 && t_grid.x < 340 && t_grid.y > 150) {
                 t_grid.property = 1;
-            } else if (t_grid.x < 340 && t_grid.y > 150 && t_grid.y < 220) {
+            } else if (t_grid.x < 340 && t_grid.y > 190 && t_grid.y < 220) {
                 t_grid.property = 1;
             }
             new_grids.add(t_grid);

@@ -48,10 +48,7 @@ public class Main extends PApplet {
     }
 
     public void draw() {
-        if (if_gen_square) {
 
-            if_gen_square = false;
-        }
         testGrids.moveOLSC();
         draw_grids();
         draw_l_square_ellipse();
@@ -88,6 +85,7 @@ public class Main extends PApplet {
         }
     }
 
+    //绘制小广场的影响边界
     void draw_l_square_ellipse() {
         ArrayList<LSquareCenter> ts = testGrids.getOLSC();
         for (int k = 0; k < ts.size(); k++) {

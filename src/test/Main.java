@@ -1,6 +1,7 @@
 package test;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 import wblut.geom.WB_Point;
 import wblut.geom.WB_PolyLine;
 
@@ -23,7 +24,10 @@ public class Main extends PApplet {
 
     public void setup() {
 //        myPlan =  DXFImport.getDXFPolyLine("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/0plan.dxf", "RIVER");
-
+        PVector a = new PVector(0,0);
+        if(a == new PVector(0,0)){
+            println("true");
+        }
     }
 
     public void draw() {
