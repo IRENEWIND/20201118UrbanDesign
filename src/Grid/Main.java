@@ -63,10 +63,7 @@ public class Main extends PApplet {
 //            stroke(0);
             noStroke();
             fill(200);
-            //映射效果展示
-//            if(t_grid.property == 100){
-//                fill(255*t_grid.ls_factor, 0, 0);
-//            }
+
             if (t_grid.property == 100) fill(255);
             else if (t_grid.property == 1) fill(0, 180, 180);
             else if (t_grid.property == 2) fill(0, 180, 220);
@@ -77,6 +74,7 @@ public class Main extends PApplet {
         }
     }
 
+    //根据图片设置最初的网格
     void gridsSetInitial() {
         ArrayList<Grid> t_grids = new ArrayList<Grid>();
         for (int y = 0; y < height; y += l_grid) {

@@ -1,6 +1,7 @@
 package testGrid;
 
 
+import hep.aida.ref.Test2;
 import testGrid.Grid;
 import javafx.beans.property.Property;
 import processing.core.PApplet;
@@ -21,8 +22,7 @@ public class Main extends PApplet {
 
 
     GridCollection testGrids;
-
-    Boolean if_gen_square = false;
+    Boolean ifMoveLSquare = false; //是否移动大广场的中心点，开始是
 
 
     public static void main(String[] args) {
@@ -44,23 +44,48 @@ public class Main extends PApplet {
         testGrids.changeRiverFactor();  //改变河流影响因子
         testGrids.changeRiverFlowField();  //改变河流力场
 
-        testGrids.genOLSC();
     }
 
     public void draw() {
 
-        testGrids.moveOLSC();
+        //是否移动其他大广场位置
+        if (ifMoveLSquare) {
+            testGrids.moveOLSC();
+        }
         draw_grids();
         draw_l_square_ellipse();
+
+
+        if (keyPressed) {
+
+            //产生新的大广场,会移动
+            if (key == 'g' || key == 'G') {
+                testGrids.genOLSC();
+                ifMoveLSquare = true;
+            }
+
+            //固定移动广场的位置，之后不再绘制
+            if (key == 't' || key == 'T') {
+                ifMoveLSquare = false;
+                testGrids.chooseOLSC();
+            }
+
+            if(key == 'v' || key == 'V'){
+                testGrids.genOLSCSurround();
+                println(2);
+            }
+
+
+        }
 
     }
 
 
     //鼠标敲击事件
     public void mousePressed() {
-        if_gen_square = true;
-//        testGrids.setLSquareCenter(mouseX, mouseY);  //改变广场点的属性和影响因子
+        testGrids.setLSquareCenter(mouseX, mouseY);
     }
+
 
     //绘制网格
     void draw_grids() {
@@ -70,10 +95,9 @@ public class Main extends PApplet {
 //            stroke(0);
             noStroke();
             fill(200);
-            //映射效果展示
+//            映射效果展示
 //            if (t_grid.property == 100) {
 //                fill(255 * t_grid.r_factor, 0, 0);
-//                if(t_grid.r_factor == 0)println("a");
 //            }
             if (t_grid.property == 100) fill(255);
             else if (t_grid.property == 1) fill(0, 180, 180);
@@ -96,7 +120,7 @@ public class Main extends PApplet {
 
             stroke(0);
             noFill();
-            ellipse(t.x, t.y, t.radius*l_grid, t.radius*l_grid);
+            ellipse(t.x, t.y, t.radius * l_grid, t.radius * l_grid);
         }
     }
 
