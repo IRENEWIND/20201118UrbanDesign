@@ -11,5 +11,6 @@
     <orderEntry type="library" name="Processing" level="project" />
     <orderEntry type="library" name="Kabeja" level="project" />
     <orderEntry type="library" name="guo_Cam" level="project" />
+    <orderEntry type="library" name="toxiclibs" level="project" />
   </component>
 </module>

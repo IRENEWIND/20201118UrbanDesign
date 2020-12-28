@@ -1,22 +1,11 @@
-package testGrid;
+package Square;
 
 
-import javafx.beans.property.Property;
-import javafx.scene.shape.Circle;
-import org.apache.batik.dom.xbl.NodeXBL;
-import processing.core.PApplet;
-import processing.core.PConstants;
-import processing.core.PImage;
 import processing.core.PVector;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Random;
-import java.util.concurrent.ForkJoinPool;
 
-import static testGrid.Main.*;
+import static Square.Main.*;
 
 //改变属性，内容用change
 //设置初始值，河流、道路用set，手动生成大广场set
@@ -34,11 +23,11 @@ public class GridCollection {
 
     //大广场参数
     int R_factor = 10;  //大广场中心点影响的范围,产生中心点周边广场块块使用
-    int n_square = 20;  //大广场周边取的格子数
+    int n_square = 25;  //大广场周边取的格子数
 
     ArrayList<LSquareCenter> origin_l_square_centers = new ArrayList<LSquareCenter>();
     ArrayList<LSquareCenter> other_l_square_centers = new ArrayList<LSquareCenter>();
-    int l_square_num = 5;   //产生其他大广场的数量 初始
+    int l_square_num = 5;   //产生其他大广场的数量 每次
     int l_square_radius = 20;  //大广场影响半径，生成新大广场使用
 
 
@@ -57,7 +46,7 @@ public class GridCollection {
                 changeGridProperty(i, j, 20);
                 changeLSquareFactor(i, j);
                 changeR_LS_Factor();
-                genLSquareSurround(i, j, R_factor, n_square);
+//                genLSquareSurround(i, j, R_factor, n_square);
             }
         }
     }
@@ -82,7 +71,7 @@ public class GridCollection {
             for (int q = j - R_factor; q <= j + R_factor; q++) {
                 if (p >= 0 && p < Nx && q >= 0 && q < Ny) {
                     Grid m = grids.get(q * Nx + p);
-                    if (m.property == 100) {
+                    if (m.property != 1 && m.property != 20 && m.property != 22) {
                         if (k < n) {  //在n个以内先放入集合中
                             t_grids[k] = m;
                             k++;
@@ -174,16 +163,34 @@ public class GridCollection {
     }
 
     //生成广场中心点周边
-    public void genOLSCSurround(){
+    public void genOLSCSurround() {
         for (int h = 0; h < other_l_square_centers.size(); h++) {
             LSquareCenter t = other_l_square_centers.get(h);
             int i = t.i;
             int j = t.j;
-            changeGridProperty(i, j, 20);
+            changeGridProperty(i, j, 22);
             changeLSquareFactor(i, j);
             changeR_LS_Factor();
             genLSquareSurround(i, j, R_factor, n_square);
         }
+        for (int l = 0; l < origin_l_square_centers.size(); l++) {
+            LSquareCenter t = origin_l_square_centers.get(l);
+            int i = t.i;
+            int j = t.j;
+            genLSquareSurround(i, j, R_factor, n_square);
+        }
+    }
+
+    //为了重新绘制选点，删除已有的周边点
+    public void deleteOLSC() {
+        for (int k = 0; k < grids.size(); k++) {
+            Grid t = grids.get(k);
+            if (t.property == 21 || t.property == 22) {
+                t.property = 100;
+            }
+            grids.set(k, t);
+        }
+
     }
 
     //向外界传输生成广场的集合，方便绘图
@@ -285,12 +292,14 @@ public class GridCollection {
 
 
     /**********改变属性property***********/
-//根据i,j找到Grid，对grid更改属性property
+//根据i,j找到Grid，对grid更改属性property, 河流不变
     public void changeGridProperty(int i, int j, int new_property) {
         int ti = i;
         int tj = j;
         Grid t = grids.get(j * Nx + i);
-        t.property = new_property;
+        if (t.property != 1) {
+            t.property = new_property;
+        }
         grids.set((j * Nx + i), t);
     }
 

@@ -1,10 +1,10 @@
-package testGrid;
+package Square;
 
 import processing.core.PVector;
 
-import static testGrid.Main.W;
-import static testGrid.Main.H;
-import static testGrid.Main.l_grid;
+import static Square.Main.W;
+import static Square.Main.H;
+import static Square.Main.l_grid;
 
 public class LSquareCenter {
     int x; //横向坐标

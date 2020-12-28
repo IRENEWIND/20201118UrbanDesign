@@ -14,3 +14,6 @@ ctrl + n 查找类
 ctrl + g 定位
 ctrl + f 查找
 ctrl + r 替换
+
+ctrl + shift + = 展开
+ctrl + shift + - 压缩

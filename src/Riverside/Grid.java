@@ -1,11 +1,6 @@
-package Grid;
+package Riverside;
 
 import processing.core.PVector;
-
-import java.util.ArrayList;
-
-import static Grid.Main.Nx;
-
 
 public class Grid {
     int property; //属性：100无,1河流,2湖泊,3原有道路，4原有建筑,20大广场中点,21大广场其他点，22其他大广场中心点
@@ -44,5 +39,5 @@ public class Grid {
         r_ls_factor = (float) (0.3*r_factor + 0.7*ls_factor);
     }
 
-}
 
+}
