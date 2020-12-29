@@ -16,17 +16,15 @@ public class Main extends PApplet {
 
     ArrayList<VerletParticle2D> nodes = new ArrayList<VerletParticle2D>(); //节点
     ArrayList<VerletParticle2D> random_nodes = new ArrayList<VerletParticle2D>();//随机节点
-    ArrayList<CurveAttractors> curves = new ArrayList<CurveAttractors>();
+    ArrayList<CurveAttractors> curves = new ArrayList<CurveAttractors>(); //曲线及曲线上的点
+    VerletPhysics2D physics = new VerletPhysics2D();  //点的物理引擎
+    ArrayList<VerletPhysics2D> curve_springs = new ArrayList<VerletPhysics2D>();  //曲线的物理引擎
+    ArrayList<VerletPhysics2D> curve_out_springs = new ArrayList<VerletPhysics2D>(); //间隔点的物理引擎，防止折角过大
 
-
-    int node_num = 20;
+    int node_num = 50;//节点总数
     int random_node_num = node_num / 2;
 
     int curve_steps = 50;  //是实际的1/2
-
-    float delta = 10;
-
-    VerletPhysics2D physics = new VerletPhysics2D();
 
 
     public static void main(String[] args) {
@@ -38,12 +36,24 @@ public class Main extends PApplet {
     }
 
     public void setup() {
+//        frameRate(10);
         background(255);
         initPhysics();
     }
 
     public void draw() {
         physics.update();
+        for (int k = 0; k < curve_out_springs.size(); k++) {
+            VerletPhysics2D a = curve_out_springs.get(k);
+            a.update();
+        }
+        for (int k = 0; k < curve_springs.size(); k++) {
+            VerletPhysics2D a = curve_springs.get(k);
+            a.update();
+        }
+
+
+
         background(255);
         drawNodes();
         drawAttractors();
@@ -61,13 +71,19 @@ public class Main extends PApplet {
     }
 
 
-///*****************Node相关**********
 
     //产生新node
     void generateNewNodes() {
         for (int k = 0; k < node_num; k++) {
-            float x = random(W);
-            float y = random(H);
+            float random_number = random(1);
+            float x,y;
+            if(random_number<0.5) {
+                x = ((int) (random(1) + 0.5)) * W;
+                y = random(H);
+            }else{
+                x = random(W);
+                y = ((int) (random(1) + 0.5)) * H;
+            }
             VerletParticle2D t = new VerletParticle2D(x, y);
 //            t.lock();
             nodes.add(t);
@@ -85,6 +101,9 @@ public class Main extends PApplet {
 
     private void generateCruveAndPoints() {
         for (int h = 0; h < random_nodes.size(); h++) {
+            VerletPhysics2D curve_attractors_physics = new VerletPhysics2D();  //初始曲线上每个球斥力集合
+            VerletPhysics2D curve_out_attractors_physics = new VerletPhysics2D();  //初始曲线上每个球斥力集合
+
             Point b = new Point((int) random_nodes.get(h).x, (int) random_nodes.get(h).y);
             Point a = new Point((int) nodes.get(2 * h).x, (int) nodes.get(2 * h).y);
             Point c = new Point((int) nodes.get(2 * h + 1).x, (int) nodes.get(2 * h + 1).y);
@@ -110,15 +129,23 @@ public class Main extends PApplet {
                 VerletParticle2D p = new VerletParticle2D(x, y);
                 physics.addParticle(p);  //将点加入物理系统
                 if(k==0||k==curve_steps*2)p.lock(); //将弹簧两个定点固定
-                physics.addBehavior(new AttractionBehavior2D(p, (float) (delta * 3), (float)0.001)); //产生和其他东西的斥力
-                physics.addBehavior(new AttractionBehavior2D(p, (float) (delta * 0.03), (float)-1)); //产生和其他东西的斥力
+
+
                 if(k>0){
                     VerletParticle2D q=curve_points.attractors.get(k-1);
-                    VerletSpring2D s=new VerletSpring2D(p,q,(float)(p.distanceTo(q)/1),(float) 1);
-                    physics.addSpring(s);
+                    VerletSpring2D s=new VerletSpring2D(p,q,(float)(p.distanceTo(q)*0.9),(float) 0.001);//相邻点形成弹簧
+                    curve_attractors_physics.addSpring(s);
+                    if(k>1){
+                        VerletParticle2D r = curve_points.attractors.get(k-2);
+                        VerletSpring2D u = new VerletSpring2D(p,r,(float)(p.distanceTo(r)*1),(float) 0.001); //间隔点形成弹簧
+                        curve_out_attractors_physics.addSpring(u);
+                    }
+                    physics.addBehavior(new AttractionBehavior2D(p, (float) (p.distanceTo(q)*0.8), (float)0.01)); //所有点之间产生和其他点的引力
                 }
                 curve_points.add(p);
             }
+            curve_springs.add(curve_attractors_physics);
+            curve_out_springs.add(curve_out_attractors_physics);
 
             curves.add(curve_points);
         }
@@ -149,12 +176,16 @@ public class Main extends PApplet {
     //绘制弹簧
     private void drawSprings() {
         stroke(255, 0,255);
-        for(VerletSpring2D s : physics.springs){
-            line(s.a.x, s.a.y, s.b.x, s.b.y);
+        for (int k = 0; k < curve_springs.size(); k++) {
+            VerletPhysics2D a = curve_springs.get(k);
+            for (int h = 0; h < a.springs.size(); h++) {
+                VerletSpring2D s = a.springs.get(h);
+                line(s.a.x, s.a.y ,s.b.x ,s.b.y);
+            }
         }
     }
 
-    //*****************Node相关**************/
+
 
 }
 

@@ -1,6 +1,8 @@
 <component name="libraryTable">
   <library name="guo_Cam">
-    <CLASSES />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../add_java/0my/guo_Cam.jar!/" />
+    </CLASSES>
     <JAVADOC />
     <SOURCES />
   </library>
