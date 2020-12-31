@@ -36,7 +36,7 @@ public class Main extends PApplet {
     }
 
     public void setup() {
-//        frameRate(10);
+        frameRate(60);
         background(255);
         initPhysics();
     }

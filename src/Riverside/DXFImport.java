@@ -13,10 +13,7 @@ import org.kabeja.parser.DXFParser;
 import org.kabeja.parser.Parser;
 import org.kabeja.parser.ParserBuilder;
 import processing.core.PApplet;
-import wblut.geom.WB_AABB;
-import wblut.geom.WB_Point;
-import wblut.geom.WB_PolyLine;
-import wblut.geom.WB_Polygon;
+import wblut.geom.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +96,7 @@ public class DXFImport extends PApplet {
 
     //dxf获取线条
     public static ArrayList<WB_PolyLine> getDXFPolyLine(String filename, String LayerName) {
-        double[][][] polys = test.DXFImport.polylines_layer(filename, LayerName);
+        double[][][] polys = DXFImport.polylines_layer(filename, LayerName);
         ArrayList<WB_PolyLine> polyLines = new ArrayList<>();
 
         for (double[][] poly : polys) {
@@ -130,6 +127,46 @@ public class DXFImport extends PApplet {
         }
 
         return polygons;
+    }
+
+    public static WB_AABB getBoundary(String filename, String LayerName) {
+        WB_AABB boundary = new WB_AABB();
+        double[][][] polys = DXFImport.polylines_layer(filename, LayerName);
+        double[][][] var5 = polys;
+        int var6 = polys.length;
+
+        for(int var7 = 0; var7 < var6; ++var7) {
+            double[][] poly = var5[var7];
+            WB_Point[] pts = new WB_Point[poly.length];
+
+            for(int j = 0; j < poly.length; ++j) {
+                pts[j] = new WB_Point(poly[j]);
+            }
+
+            boundary = new WB_AABB(pts);
+        }
+
+        return boundary;
+    }
+
+
+    public static ArrayList<WB_Point> getDXFPoints(String filename, String LayerName) {
+        double[][][] polys = DXFImport.polylines_layer(filename, LayerName);
+        ArrayList<WB_Point> points = new ArrayList<>();
+        double[][][] var5 = polys;
+        int var6 = polys.length;
+
+        for(int var7 = 0; var7 < var6; ++var7) {
+            double[][] poly = var5[var7];
+            WB_Point[] pts = new WB_Point[poly.length];
+
+            for(int j = 0; j < poly.length; ++j) {
+                pts[j] = new WB_Point(poly[j]);
+                points.add(pts[j]);
+            }
+        }
+
+        return points;
     }
 
 
