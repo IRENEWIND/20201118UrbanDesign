@@ -7,13 +7,13 @@ import static Riverside.Main.W;
 import static Riverside.Main.H;
 import static processing.core.PApplet.sqrt;
 
-public class LSquare {
+public class Square {
     float x; //横向坐标
     float y; //纵向
     int radius; //影响范围
     PVector speed;
 
-    public LSquare(float x, float y, int radius) {
+    public Square(float x, float y, int radius) {
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -26,7 +26,7 @@ public class LSquare {
             y += speed.y;
     }
 
-    public float distance(LSquare q){
+    public float distance(Square q){
         float distance = sqrt((this.x-q.x)*(this.x-q.x) + (this.y-q.y)*(this.y-q.y));
         return distance;
     }

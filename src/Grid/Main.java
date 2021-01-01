@@ -61,7 +61,6 @@ public class Main extends PApplet {
         }
 
         draw_grids();
-
         if (keyPressed) {
             //产生新的大广场,会移动
             if (key == 'g' || key == 'G') {
@@ -90,7 +89,6 @@ public class Main extends PApplet {
     public void mousePressed() {
         testGrids.setLSquareCenter(mouseX, mouseY);
     }
-
 
     //绘制网格
     void draw_grids() {
