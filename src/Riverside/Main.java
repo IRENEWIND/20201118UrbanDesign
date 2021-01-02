@@ -29,6 +29,8 @@ public class Main extends PApplet {
     ArrayList<WB_Polygon> block_edge = new ArrayList<>();
     ArrayList<WB_Point> origin_square = new ArrayList<>();
 
+
+    ArrayList<WB_Polygon> area_all = new ArrayList<>();
     ArrayList<WB_Polygon> area_public = new ArrayList<>();
     ArrayList<WB_Polygon> area_life = new ArrayList<>();
     ArrayList<WB_Polygon> area_ecology = new ArrayList<>();
@@ -37,7 +39,7 @@ public class Main extends PApplet {
     ArrayList<Square> l_squares = new ArrayList<>();
     ArrayList<Square> l_squares_origin = new ArrayList<>();
     ArrayList<Square> l_squares_all = new ArrayList<>();
-    int l_square_radius = 400;  //两个公园相距400m
+    int l_square_radius = 360;  //两个公园相距400m
     int l_square_num = 5;   //每次产生广场数目
     float river_factor_radius = 5000;   //河流对大广场吸引力
     Boolean ifMoveLSquare = false; //是否移动大广场的中心点，开始否
@@ -50,6 +52,9 @@ public class Main extends PApplet {
     Boolean ifMoveSSquare = false; //是否移动小广场的中心点，开始否
     Boolean ifSSquare = false;     //是否编辑小广场
 
+    ArrayList<WB_Point> nodes = new ArrayList<>();
+
+    Boolean ifPath = false;         //是否编辑道路
 
 
     public static void main(String[] args) {
@@ -76,18 +81,75 @@ public class Main extends PApplet {
             //生成广场
             if (key == 'L' || key == 'l') {
                 ifLSquare = true;
+                l_squares_all.clear();
             }
             //生成小节点
-            if(key == 's' || key == 'S'){
+            if(key == 'k' || key == 'K'){
                 ifSSquare = true;
             }
+            //将所有节点汇聚到一个集合里面
+            if(key == 'p' || key == 'P'){
+                ifPath = true;
+            }
+        }
+
+        /************道路***********/
+        if(ifPath){
+            drawNodes();
+
+            if(keyPressed){
+                //集合所有点
+                if(key == 'q' || key == 'Q') {
+                    genNodes();
+                }
+                //产生道路
+                if (key == 'g' || key == 'G') {
+                    genCruve();
+                }
+            }
+        }
+
+        /************小节点***********/
+        if(ifSSquare){
+            drawSSquares();
+
+            //是否移动其他大广场位置
+            if (ifMoveSSquare) {
+                moveSSquares();
+            }
+
+            if (keyPressed) {
+                //产生新的大广场,会移动
+                if (key == 'g' || key == 'G') {
+                    genSSquares();
+                    ifMoveSSquare = true;
+                }
+                //删减大广场
+                if (key == 'd' || key == 'D') {
+                    removeSSquares();
+                }
+                //移动大广场
+                if (key == 'm' || key == 'M') {
+                    ifMoveSSquare = true;
+                }
+                //固定大广场
+                if (key == 'f' || key == 'F') {
+                    ifMoveSSquare = false;
+                }
+                //存储大广场
+                if (key == 'a' || key == 'A') {
+                    ifSSquare = false;
+                    ifMoveSSquare = false;
+                }
+            }
+
+        }
+
+        if(!ifSSquare){
+            drawSSquaresCenter();
         }
 
         /************广场***********/
-        if(!ifLSquare){
-            drawLSquaresCenter();
-        }
-
         if(ifLSquare) {
             drawLSquares();
 
@@ -126,52 +188,58 @@ public class Main extends PApplet {
                     for(Square p : l_squares_origin){
                         l_squares_all.add(p);
                     }
+                    //删除不合适的
+
                 }
             }
         }
 
-        /************小节点***********/
-
-        if(!ifSSquare){
-            drawSSquaresCenter();
+        if(!ifLSquare){
+            drawLSquaresCenter();
         }
-
-        if(ifSSquare){
-            drawSSquares();
-
-            //是否移动其他大广场位置
-            if (ifMoveSSquare) {
-                moveSSquares();
-            }
-
-            if (keyPressed) {
-                //产生新的大广场,会移动
-                if (key == 'g' || key == 'G') {
-                    genSSquares();
-                    ifMoveSSquare = true;
-                }
-                //删减大广场
-                if (key == 'd' || key == 'D') {
-                    removeSSquares();
-                }
-                //移动大广场
-                if (key == 'm' || key == 'M') {
-                    ifMoveSSquare = true;
-                }
-                //固定大广场
-                if (key == 'f' || key == 'F') {
-                    ifMoveSSquare = false;
-                }
-                //存储大广场
-                if (key == 'a' || key == 'A') {
-                    ifSSquare = false;
-                    ifMoveSSquare = false;
-                }
-            }
-
-        }
-
     }
+
+
+    /*********************路径生成*********************/
+
+    private void genNodes() {
+        ArrayList<WB_Point> points = Method.genPointsinPolygon(boundary, area_all, 50);
+        for(WB_Point p : points){
+            nodes.add(p);
+        }
+    }
+
+    private void genCruve(){
+        //挑出两个锚点
+        ArrayList<WB_Point> nodes_matching = new ArrayList<>();
+        for(WB_Point t: nodes){
+            nodes_matching.add(t);
+        }
+        for (int i = 0; i < (int)(nodes.size()/2); i++) {
+            WB_Point p = nodes_matching.get(i);
+            for (int j = i+1; j < nodes.size(); j++) {
+                WB_Point q = nodes_matching.get(j);
+                float pq_distance = Method.getDistance(p,q);
+                if(pq_distance > 300 && pq_distance < 800){
+
+                }
+            }
+
+        }
+
+        //得到第三个随机点
+    }
+
+    private void drawNodes() {
+        for(WB_Point p : nodes){
+            stroke(0);
+            fill(0);
+            ellipse(p.xf(), p.yf(), 10, 10);
+        }
+    }
+
+
+
 
 
     /*********************小广场*********************/
@@ -189,7 +257,32 @@ public class Main extends PApplet {
     }
 
     private void removeSSquares() {
+        for (int k = s_squares.size()-1; k >=0; k--) {
+            Square p = s_squares.get(k);
+            Boolean ifdelete = true;
 
+            //计算河流对其斥力
+            float r_min_distance_center = Method.closestPointdisPL(river_center, p.x, p.y);
+            if(ifdelete) {
+                if (r_min_distance_center > 280) {
+                    s_squares.remove(k);
+                    ifdelete = false;
+                }
+            }
+            //删除lake内部的点
+            if(ifdelete) {
+                if (Method.ifContain(lake_edge, p.x, p.y)) {
+                    s_squares.remove(k);
+                    ifdelete = false;
+                }
+            }
+            if(ifdelete) {
+                if (Method.ifContain(river_edge, p.x, p.y)) {
+                    s_squares.remove(k);
+                    ifdelete = false;
+                }
+            }
+        }
     }
 
     private void moveSSquares() {
@@ -199,7 +292,10 @@ public class Main extends PApplet {
             PVector all = new PVector();
             PVector attractions = new PVector();
             PVector river_factor = new PVector();
+            PVector river_pushout = new PVector();
             PVector river_push = new PVector();
+            PVector river_s_push = new PVector();
+            PVector lake_push = new PVector();
 
             //计算小球间的力
             for (Square q : s_squares) {
@@ -214,7 +310,7 @@ public class Main extends PApplet {
 
             //计算河流对其拉力
             float r_min_distance = Method.closestPointdis(river_edge, p.x, p.y);
-            if (r_min_distance < (river_factor_radius/100)) {
+            if (r_min_distance < (river_factor_radius/1000)) {
                 WB_Point t_point = Method.closestPoint(river_edge, p.x, p.y);
                 river_factor = new PVector(t_point.xf() - p.x, t_point.yf() - p.y);
                 river_factor.normalize();
@@ -224,15 +320,39 @@ public class Main extends PApplet {
             //计算河流对其斥力
             float r_min_distance_center = Method.closestPointdisPL(river_center, p.x, p.y);
             if (r_min_distance_center < 10) {
-            } else if (r_min_distance_center < (s_square_num/10)) {
+            } else if (r_min_distance_center < (s_square_radius/2)) {
                 WB_Point t_point = Method.closestPointPL(river_center, p.x, p.y);
-                river_push = new PVector(p.x - t_point.xf(), p.y - t_point.yf());
+                river_pushout = new PVector(p.x - t_point.xf(), p.y - t_point.yf());
+                river_pushout.normalize();
+                river_pushout.mult(1 - r_min_distance_center / (s_square_radius/2));
+            }
+            all.add(attractions.mult((float) 0.6)).add(river_factor.mult((float) 0.2)).add(river_push.mult((float) 0.1).add(river_s_push).add(lake_push)).mult(3);
+            p.update(all);
+
+            //河流斥力
+            if (Method.ifContain(river_edge, p.x, p.y)) {
+                WB_Point t_point = Method.closestPoint(river_edge, p.x, p.y);
+                river_push = new PVector(t_point.xf()-p.x, t_point.yf() - p.y);
                 river_push.normalize();
-                river_factor.mult(1 - r_min_distance_center / 50);
             }
 
-            all.add(attractions.mult((float) 0.5)).add(river_factor.mult((float) 0.01)).add(river_push.mult((float) 0.4)).mult(5);
+            //支流斥力
+            if (Method.ifContain(river_s_edge, p.x, p.y)) {
+                WB_Point t_point = Method.closestPoint(river_s_edge, p.x, p.y);
+                river_s_push = new PVector(t_point.xf()-p.x, t_point.yf() - p.y);
+                river_s_push.normalize();
+            }
+
+            //湖泊斥力
+            if (Method.ifContain(lake_edge, p.x, p.y)) {
+                WB_Point t_point = Method.closestPoint(lake_edge, p.x, p.y);
+                lake_push = new PVector(t_point.xf()-p.x, t_point.yf() - p.y);
+                lake_push.normalize();
+            }
+
+            all.add(attractions.mult((float) 0.5)).add(river_factor.mult((float) 0.3)).add(river_pushout.mult((float) 0.2).add(river_push.mult(3)).add(river_s_push.mult(3)).add(lake_push.mult(3))).mult(3);
             p.update(all);
+
         }
     }
 
@@ -274,12 +394,11 @@ public class Main extends PApplet {
             float y = 0;
             int random_num = (int) (random(1) + 0.5);
             if (random_num == 0) {
-//                x = random((float) boundary.getMinX(), (float) boundary.getCenterX());
-                x = 0;
-                y = random((float) boundary.getMinY(), (float) boundary.getCenterY());
+                x = (float)boundary.getCenterX()+300;
+                y = random((float) boundary.getMinY(), (float) boundary.getCenterY()+600);
             } else if (random_num == 1) {
                 x = random((float) boundary.getMinX(), (float) boundary.getCenterX());
-                y = random((float) boundary.getCenterY(), (float) boundary.getMaxY());
+                y = (float) boundary.getCenterY()+600;
             }
 
 
@@ -298,13 +417,16 @@ public class Main extends PApplet {
             PVector all = new PVector();
             PVector attractions = new PVector();
             PVector river_factor = new PVector();
-            PVector river_push = new PVector();
+            PVector river_pushout = new PVector();
+            PVector river_s_push = new PVector();
+            PVector lake_push = new PVector();
+
             //计算小球间的力
             for (Square q : l_squares) {
                 if (p.distance(q) < l_square_radius) {
                     PVector attraction = new PVector(p.x - q.x, p.y - q.y);
                     attraction.normalize();
-                    attraction.add(new PVector(random(-1, 1), random(-1, 1)));
+                    attraction.add((new PVector(random(-1, 1), random(-1, 1))).mult((float)1.2));
                     attraction.mult((l_square_radius - p.distance(q)) / l_square_radius);
                     attractions.add(attraction);
                 }
@@ -326,29 +448,55 @@ public class Main extends PApplet {
                 river_factor.normalize();
                 river_factor.mult(1 - r_min_distance / river_factor_radius);
             }
+
             //计算河流对其斥力
             float r_min_distance_center = Method.closestPointdisPL(river_center, p.x, p.y);
-            if (r_min_distance_center < 10) {
-//                l_squares.remove(k);
-            } else if (r_min_distance_center < l_square_radius/10) {
+            if (r_min_distance_center < l_square_radius/10) {
                 WB_Point t_point = Method.closestPointPL(river_center, p.x, p.y);
-                river_push = new PVector(p.x - t_point.xf(), p.y - t_point.yf());
-                river_push.normalize();
-                river_factor.mult(1 - r_min_distance_center / 50);
+                river_pushout = new PVector(p.x - t_point.xf(), p.y - t_point.yf());
+                river_pushout.normalize();
+                river_pushout.mult(1 - r_min_distance_center / (l_square_radius/10));
             }
 
-            all.add(attractions.mult((float) 0.6)).add(river_factor.mult((float) 0.2)).add(river_push.mult((float) 0.2)).mult(20);
+            //支流斥力
+            if (Method.ifContain(river_s_edge, p.x, p.y)) {
+                WB_Point t_point = Method.closestPoint(river_s_edge, p.x, p.y);
+                river_s_push = new PVector(t_point.xf()-p.x, t_point.yf() - p.y);
+                river_s_push.normalize();
+            }
+
+            //湖泊斥力
+            if (Method.ifContain(lake_edge, p.x, p.y)) {
+                WB_Point t_point = Method.closestPoint(lake_edge, p.x, p.y);
+                lake_push = new PVector(t_point.xf()-p.x, t_point.yf() - p.y);
+                lake_push.normalize();
+            }
+
+
+            all.add(attractions.mult((float) 0.6)).add(river_factor.mult((float) 0.3)).add(river_pushout.mult((float) 0.2).add(lake_push.mult(3))).mult(10);
             p.update(all);
         }
     }
 
     private void removeLSquares() {
-        for (int k = 0; k < l_squares.size(); k++) {
+        for (int k = l_squares.size()-1; k >=0; k--) {
             Square p = l_squares.get(k);
+            Boolean ifdelete = true;
+
             //计算河流对其斥力
             float r_min_distance_center = Method.closestPointdisPL(river_center, p.x, p.y);
-            if (r_min_distance_center > 200) {
-                l_squares.remove(k);
+            if(ifdelete) {
+                if (r_min_distance_center > 250) {
+                    l_squares.remove(k);
+                    ifdelete = false;
+                }
+            }
+            //删除lake内部的点
+            if(ifdelete) {
+                if (Method.ifContain(lake_edge, p.x, p.y)) {
+                    l_squares.remove(k);
+                    ifdelete = false;
+                }
             }
         }
     }
@@ -373,15 +521,8 @@ public class Main extends PApplet {
     }
 
     private void drawLSquaresCenter(){
-        for (int k = 0; k < l_squares.size(); k++) {
-            Square t = l_squares.get(k);
-            stroke(255, 200, 0);
-            strokeWeight(5);
-            ellipse(t.x, t.y, 5, 5);
-            strokeWeight(1);
-        }
-        for (int h = 0; h < l_squares_origin.size(); h++) {
-            Square t = l_squares_origin.get(h);
+        for (int k = 0; k < l_squares_all.size(); k++) {
+            Square t = l_squares_all.get(k);
             stroke(255, 200, 0);
             strokeWeight(5);
             ellipse(t.x, t.y, 5, 5);
@@ -404,8 +545,9 @@ public class Main extends PApplet {
         block_edge = DXFImport.getDXFPolygons("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/00.dxf", "0block");//导入地块的边界
         origin_square = DXFImport.getDXFPoints("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/00.dxf", "1origin_square");
         area_public = DXFImport.getDXFPolygons("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/00.dxf", "2area_public");
-        area_life = DXFImport.getDXFPolygons("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/00.dxf", "2area_life");;
-        area_ecology = DXFImport.getDXFPolygons("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/00.dxf", "2area_ecology");;
+        area_life = DXFImport.getDXFPolygons("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/00.dxf", "2area_life");
+        area_ecology = DXFImport.getDXFPolygons("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/00.dxf", "2area_ecology");
+        area_all = DXFImport.getDXFPolygons("D:/computer/idealC/idealc_workplace/20201118UrbanDesign/others/00.dxf", "2area_all");
     }
 
     void drawDXF() {

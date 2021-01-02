@@ -1,20 +1,15 @@
 package Riverside;
 
 import javafx.scene.shape.Polyline;
-import wblut.geom.WB_GeometryOp;
-import wblut.geom.WB_Point;
-import wblut.geom.WB_PolyLine;
-import wblut.geom.WB_Polygon;
+import wblut.geom.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Method {
-
     public void Method(){
 
     }
-
 
     //polygon和（x,y)是否包含
     public static boolean ifContain(ArrayList<WB_Polygon> polygons, float x, float y) {
@@ -185,6 +180,22 @@ public class Method {
     }
 
     /********************************计算最近点*************************************/
+
+    public static  ArrayList<WB_Point> genPointsinPolygon(WB_AABB boundary, ArrayList<WB_Polygon> polygons, int point_num) {
+        ArrayList<WB_Point> points = new ArrayList<>();
+        for (int k = 0; k < point_num; k++) {
+            k--;
+            WB_Point p = new WB_Point();
+            float x = (float)(boundary.getMinX() + Math.random()*(boundary.getMaxX()-boundary.getMinX()));
+            float y = (float)(boundary.getMinY() + Math.random()*(boundary.getMaxY()-boundary.getMinY()));
+            if(ifContain(polygons, x, y)) {
+                p = new WB_Point(x, y);
+                points.add(p);
+                k++;
+            }
+        }
+        return points;
+    }
 
 
     public static ArrayList<WB_PolyLine> changePolygonToPolyline(ArrayList<WB_Polygon> polygons){
