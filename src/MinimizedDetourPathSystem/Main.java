@@ -52,14 +52,11 @@ public class Main extends PApplet {
             a.update();
         }
 
-
-
         background(255);
         drawNodes();
         drawAttractors();
         drawSprings();
     }
-
 
 
 
